@@ -18,8 +18,27 @@ namespace CetToDoWeb.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            
+            List<TodoItem> result;
+            if (User.Identity.IsAuthenticated)
+            {
+                var cetUser = await userManager.GetUserAsync(HttpContext.User);
+                var query = dbContext.TodoItems // from todoItems
+                    .Include(t => t.Category) //inner join categories c on t.categoryId = c.Id
+                    .Where(t => t.CetUserId == cetUser.Id && !t.IsCompleted) // where isCompleted=0
+                    .OrderBy(t => t.DueDate) // order by dueDate
+                    .Take(3); // top 3
+                              //select top 3 * from todoItems t inner join categories c on t.categoryId = c.Id
+                              //where isCompleted=0 order by dueDate
+                result = await query.ToListAsync();
+            } else
+            {
+                result = new List<TodoItem>();
+            }
+            
+            
             return View();
         }
 
