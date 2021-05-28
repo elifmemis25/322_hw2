@@ -21,7 +21,7 @@ namespace CetToDoWeb.Controllers
         public async Task<IActionResult> Index()
         {
             
-            List<TodoItem> result;
+            List<ToDoItem> result;
             if (User.Identity.IsAuthenticated)
             {
                 var cetUser = await userManager.GetUserAsync(HttpContext.User);
@@ -35,7 +35,7 @@ namespace CetToDoWeb.Controllers
                 result = await query.ToListAsync();
             } else
             {
-                result = new List<TodoItem>();
+                result = new List<ToDoItem>();
             }
             
             
