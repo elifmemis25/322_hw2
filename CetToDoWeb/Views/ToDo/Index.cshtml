@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CetToDoWeb.Models.ToDoItem>
+﻿@model SearchViewModel 
 
 @{
     ViewData["Title"] = "Index";
@@ -27,19 +27,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Description
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsCompleted)
+                IsCompleted
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DueDate)
+                DueDate
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+                Category
             </th>
             <th></th>
         </tr>
