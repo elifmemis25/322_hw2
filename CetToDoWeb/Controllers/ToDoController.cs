@@ -28,7 +28,7 @@ namespace CetToDoWeb.Controllers
             var cetUser = await _userManager.GetUserAsync(HttpContext.User);
             var query = _context.ToDoItems.Include(t => t.Category).Where(t => t.CetUserId == cetUser.Id); // select * from TodoItems t inner join Categories c on t.CategoryId=c.Id
 
-            if (!searchModel.ShowAll)
+            if (!searchModel.SearchInDescription)
             {
                 query = query.Where(t => !t.IsCompleted); // where t.Iscompleted=0
             }
