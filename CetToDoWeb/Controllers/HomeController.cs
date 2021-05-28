@@ -39,7 +39,7 @@ namespace CetToDoWeb.Controllers
             }
             
             
-            return View();
+            return View(result);
         }
 
         public IActionResult Privacy()
