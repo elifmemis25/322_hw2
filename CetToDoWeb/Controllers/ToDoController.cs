@@ -21,21 +21,26 @@ namespace CetToDoWeb.Controllers
         }
 
         // GET: ToDo
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(SearchViewModel searchModel)
         {
             /* var applicationDbContext = _context.ToDoItems.Include(t => t.Category).Where(t => showall || !t.IsCompleted).OrderBy(t => t.DueDate); */
 
-            ViewBag.Showall = showall;
-            var applicationDbContext = _context.ToDoItems.Include(t => t.Category).AsQueryable();
+            var cetUser = await _userManager.GetUserAsync(HttpContext.User);
+            var query = _context.ToDoItems.Include(t => t.Category).Where(t => t.CetUserId == cetUser.Id); // select * from TodoItems t inner join Categories c on t.CategoryId=c.Id
 
-            if (!showall)
+            if (!searchModel.ShowAll)
             {
-                applicationDbContext = applicationDbContext.Where(t => !t.IsCompleted);
+                query = query.Where(t => !t.IsCompleted); // where t.Iscompleted=0
+            }
+            if (!String.IsNullOrWhiteSpace(searchModel.SearchText))
+            {
+                query = query.Where(t => t.Title.Contains(searchModel.SearchText)); // where t.Title like '%serchtext%'
             }
 
-            applicationDbContext = applicationDbContext.OrderBy(t => t.DueDate);
+            query = query.OrderBy(t => t.DueDate); // order by DueDate
+            searchModel.Result = await query.ToListAsync();
 
-            return View(await applicationDbContext.ToListAsync());
+            return View(searchModel);
         }
 
         // GET: ToDo/Details/5
