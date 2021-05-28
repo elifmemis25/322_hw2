@@ -23,6 +23,20 @@
     }
 </p>
 
+<form asp-action="Index" asp-controller="Todo" method="get">
+    <div class="form-group">
+        <label asp-for="SearchText" class="control-label"></label>
+        <input asp-for="SearchText" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ShowAll" class="control-label"></label>
+        <input asp-for="ShowAll" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
