@@ -13,7 +13,7 @@ namespace CetToDoWeb.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext, UserManager<CetUser> userManager)
         {
             _logger = logger;
         }
