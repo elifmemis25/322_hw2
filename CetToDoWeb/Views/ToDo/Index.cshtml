@@ -73,11 +73,11 @@
             <td>
                 @if (item.IsCompleted)
                 {
-                    <a asp-action="MakeInComplete" asp-route-id="@item.Id" asp-route-showAll="@ViewBag.Showall">Incomplete</a>
+                    <a asp-action="MakeInComplete" asp-route-id="@item.Id" asp-route-showAll="@Model.ShowAll">Incomplete</a>
                 }
                 else
                 {
-                    <a asp-action="MakeComplete" asp-route-id="@item.Id" asp-route-showAll="@ViewBag.Showall"> Complete</a>
+                    <a asp-action="MakeComplete" asp-route-id="@item.Id" asp-route-showAll="@Model.ShowAll"> Complete</a>
                 }
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
