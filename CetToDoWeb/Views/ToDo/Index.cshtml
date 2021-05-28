@@ -11,7 +11,7 @@
 </p>
 
 <p>
-    @if (Model.ShowAll)
+    @if (Model.SearchInDescription)
     {
         <a asp-action="Index" asp-route-showall="false">Show Only Incompletes</a>
 
@@ -87,11 +87,11 @@
             <td>
                 @if (item.IsCompleted)
                 {
-                    <a asp-action="MakeInComplete" asp-route-id="@item.Id" asp-route-showAll="@Model.ShowAll">Incomplete</a>
+                    <a asp-action="MakeInComplete" asp-route-id="@item.Id" asp-route-showAll="@Model.SearchInDescription">Incomplete</a>
                 }
                 else
                 {
-                    <a asp-action="MakeComplete" asp-route-id="@item.Id" asp-route-showAll="@Model.ShowAll"> Complete</a>
+                    <a asp-action="MakeComplete" asp-route-id="@item.Id" asp-route-showAll="@Model.SearchInDescription"> Complete</a>
                 }
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
